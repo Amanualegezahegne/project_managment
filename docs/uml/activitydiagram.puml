@@ -1,0 +1,59 @@
+@startuml
+title Role-Based Dashboard Access Control
+
+actor "Admin" as A
+actor "Staff" as S
+actor "Guest" as G
+
+package "Dashboard Components" {
+  component "User Management" as UM
+  component "Room Management" as RM
+  component "Booking Management" as BM
+  component "Payment Processing" as PP
+  component "Analytics Dashboard" as AD
+  component "Personal Profile" as PPF
+}
+
+' Admin - Full Access
+A -r-> UM : Full CRUD
+A -r-> RM : Full CRUD
+A -r-> BM : Full CRUD
+A -r-> PP : Full Access
+A -r-> AD : Full Access
+A -l-> PPF : View/Edit
+
+' Staff - Limited Access
+S -d-> RM : Read/Update
+S -d-> BM : Read/Update
+S -d-> PP : Read-only
+S -d-> AD : Read-only
+S -d-> PPF : View/Edit
+
+' Guest - Minimal Access
+G -u-> BM : Create/View own
+G -u-> PPF : View/Edit own
+
+note right of A
+**Admin Privileges:**
+- Full system control
+- User role management
+- All data access
+- System configuration
+end note
+
+note left of S
+**Staff Privileges:**
+- Daily operations
+- Room/booking management
+- Limited reporting
+- No user management
+end note
+
+note bottom of G
+**Guest Privileges:**
+- Personal bookings only
+- Profile management
+- No system access
+end note
+
+@enduml
