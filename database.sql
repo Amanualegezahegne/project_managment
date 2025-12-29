@@ -7,11 +7,8 @@ SET time_zone = "+00:00";
 CREATE DATABASE IF NOT EXISTS `hotel_management` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
 USE `hotel_management`;
 
--- --------------------------------------------------------
-
---
 -- Table structure for table `users`
---
+
 
 CREATE TABLE `users` (
   `id` int(11) NOT NULL,
@@ -23,18 +20,15 @@ CREATE TABLE `users` (
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
+
 -- Dumping data for table `users`
---
 
 INSERT INTO `users` (`id`, `name`, `email`, `phone`, `password_hash`, `role`) VALUES
 (1, 'Admin User', 'admin@amanhotel.com', '1234567890', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'admin'); -- Password: password
 
--- --------------------------------------------------------
 
---
 -- Table structure for table `rooms`
---
+
 
 CREATE TABLE `rooms` (
   `room_id` int(11) NOT NULL,
@@ -46,9 +40,9 @@ CREATE TABLE `rooms` (
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
+
 -- Dumping data for table `rooms`
---
+
 
 INSERT INTO `rooms` (`room_id`, `room_number`, `room_type`, `price_per_night`, `status`, `description`) VALUES
 (1, '101', 'Single', 100.00, 'available', 'Cozy single room with a garden view.'),
@@ -56,11 +50,11 @@ INSERT INTO `rooms` (`room_id`, `room_number`, `room_type`, `price_per_night`, `
 (3, '201', 'Suite', 300.00, 'available', 'Luxury suite with a private balcony and jacuzzi.'),
 (4, '202', 'Deluxe', 200.00, 'available', 'Modern deluxe room with city view.');
 
--- --------------------------------------------------------
 
---
+
+
 -- Table structure for table `bookings`
---
+
 
 CREATE TABLE `bookings` (
   `id` int(11) NOT NULL,
@@ -76,11 +70,10 @@ CREATE TABLE `bookings` (
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
--- --------------------------------------------------------
 
---
+
 -- Table structure for table `contact_messages`
---
+
 
 CREATE TABLE `contact_messages` (
   `id` int(11) NOT NULL,
@@ -92,11 +85,11 @@ CREATE TABLE `contact_messages` (
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
--- --------------------------------------------------------
 
---
+
+
 -- Table structure for table `events`
---
+
 
 CREATE TABLE `events` (
   `event_id` int(11) NOT NULL,
@@ -109,37 +102,36 @@ CREATE TABLE `events` (
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
+
 -- Dumping data for table `events`
---
+
 
 INSERT INTO `events` (`event_id`, `title`, `description`, `start_time`, `location`, `organizer_id`) VALUES
 (1, 'Gala Dinner', 'An exclusive evening of fine dining and music.', '2025-12-25 19:00:00', 'Grand Ballroom', 1),
 (2, 'New Year Party', 'Celebrate the new year with us!', '2025-12-31 22:00:00', 'Rooftop Lounge', 1);
 
--- --------------------------------------------------------
 
---
+
 -- Indexes for dumped tables
---
 
---
+
+
 -- Indexes for table `users`
---
+
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `email` (`email`);
 
---
+
 -- Indexes for table `rooms`
---
+
 ALTER TABLE `rooms`
   ADD PRIMARY KEY (`room_id`),
   ADD UNIQUE KEY `room_number` (`room_number`);
 
---
+
 -- Indexes for table `bookings`
---
+
 ALTER TABLE `bookings`
   ADD PRIMARY KEY (`id`),
   ADD KEY `user_id` (`user_id`),
@@ -198,7 +190,6 @@ ALTER TABLE `events`
 
 --
 -- Constraints for table `bookings`
---
 ALTER TABLE `bookings`
   ADD CONSTRAINT `bookings_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `bookings_ibfk_2` FOREIGN KEY (`room_id`) REFERENCES `rooms` (`room_id`) ON DELETE CASCADE;
