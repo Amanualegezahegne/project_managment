@@ -52,3 +52,44 @@ To design system-level workflows that support hotel business operations, with fo
 - Clarification needed on event approval authority levels between Staff and Admin.
 - Minor dependency on final business rules for event-related payments and refunds.
 - Coordination required to ensure workflow alignment with backend API structure.
+
+
+
+# Daily Scrum Report – Sprint 2
+
+**Project:** Aman Hotel Management System  
+**Sprint:** Sprint 2  
+**Name:** Fentaw Getasew  
+**Role:** System Designer  
+**Date:** 30/12/2025  
+
+---
+
+## Objective
+To design system-level workflows that support hotel business operations, with focus on the Contact Message feature and Contact Form workflow.
+
+---
+
+## Work Completed (Yesterday)
+- Defined and documented cancellation rules and refund policies.
+- Designed the cancellation workflow and integrated it with booking and payment modules.
+- Created Role-Based Access Control (RBAC) architecture and permission matrix.
+- Mapped dashboard modules to Admin, Staff, and Guest roles.
+- Produced high-level RBAC system design diagrams for implementation reference.
+
+---
+
+## Work In Progress (Today)
+### Design Contact Form Workflow
+- Designing the end-to-end Contact Form workflow from message submission to staff notification.
+- Defining form validation and error handling rules.
+- Mapping roles responsible for handling contact messages (Guest, Staff, Admin).
+- Integrating the Contact Form workflow with backend notification and ticketing modules.
+- Creating workflow diagrams to guide backend and frontend implementation.
+
+---
+
+## Impediments / Blockers
+- Clarification needed on notification routing rules between Staff and Admin.
+- Minor dependency on backend ticketing module readiness.
+- Coordination required to ensure workflow alignment with frontend form validations.
