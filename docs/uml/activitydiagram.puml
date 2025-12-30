@@ -57,3 +57,42 @@ note bottom of G
 end note
 
 @enduml
+
+
+
+
+@startuml
+title Event Request Workflow - Aman Hotel Management System
+
+actor "Guest" as G
+actor "Staff" as S
+actor "Admin" as A
+
+package "Event Request Module" {
+  component "Submit Request" as SR
+  component "Review Request" as RR
+  component "Approve/Reject" as AR
+  component "Schedule Event" as SE
+  component "Payment Processing" as PP
+}
+
+' Guest actions
+G -u-> SR : Submit Event Request
+G -u-> PP : Make Payment (if required)
+G -l-> SR : View Request Status
+
+' Staff actions
+S -r-> RR : Review Event Request
+S -r-> AR : Recommend Approval/Reject
+S -r-> SE : Schedule Event (optional)
+
+' Admin actions
+A -r-> AR : Final Approve/Reject
+A -r-> SE : Schedule Event
+
+' Workflow notes
+note right of SR
+Event Request submitted by Guest
+inc
+
+
