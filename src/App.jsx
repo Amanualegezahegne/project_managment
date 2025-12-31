@@ -19,6 +19,13 @@ import PaymentSuccess from "./pages/PaymentSuccess.jsx";
 import PaymentFailed from "./pages/PaymentFailed.jsx";
 import Receipt from "./pages/Receipt.jsx";
 
+// Sprint 2 New Pages
+import AdminDashboard from "./pages/AdminDashboard.jsx";
+import StaffDashboard from "./pages/StaffDashboard.jsx";
+import CustomerDashboard from "./pages/CustomerDashboard.jsx";
+import TaskBooking from "./pages/TaskBooking.jsx";
+import EventRequest from "./pages/EventRequest.jsx";
+
 // Layout component to handle conditional rendering of Navbar/Footer
 function Layout({ children }) {
   const location = useLocation();
@@ -53,7 +60,14 @@ export default function App() {
           <Route path="/receipt/:bookingId" element={<Receipt />} />
 
           <Route path="/events" element={<Events />} />
+          <Route path="/event-request" element={<EventRequest />} />
           <Route path="/admin" element={<Admin />} />
+
+          {/* Sprint 2 New Routes */}
+          <Route path="/admin-dashboard" element={<AdminDashboard />} />
+          <Route path="/staff-dashboard" element={<StaffDashboard />} />
+          <Route path="/customer-dashboard" element={<CustomerDashboard />} />
+          <Route path="/task-booking" element={<TaskBooking />} />
         </Routes>
       </Layout>
     </BrowserRouter>

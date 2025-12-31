@@ -40,6 +40,27 @@ export default function MyBookings() {
         fetchBookings();
     }, [user, navigate]);
 
+    const handleCancel = async (bookingId) => {
+        if (!window.confirm("Are you sure you want to cancel this booking?")) return;
+
+        try {
+            setLoading(true);
+            const response = await bookingService.updateStatus(bookingId, 'cancelled');
+            if (response.status === 'success') {
+                alert("Booking cancelled successfully.");
+                // Update local state
+                setBookings(prev => prev.map(b => b.id === bookingId ? { ...b, status: 'cancelled' } : b));
+            } else {
+                alert(response.message || "Failed to cancel booking.");
+            }
+        } catch (err) {
+            console.error("Cancellation error:", err);
+            alert("An error occurred while trying to cancel the booking.");
+        } finally {
+            setLoading(false);
+        }
+    };
+
     const handlePayment = async (bookingId) => {
         try {
             // Optimistic UI or specific loading state could be better, but using global loading for safety
@@ -55,8 +76,8 @@ export default function MyBookings() {
         } catch (err) {
             console.error("Payment initialization error:", err);
             if (err.response) {
-                 console.error("Error Response Data:", err.response.data);
-                 console.error("Error Response Status:", err.response.status);
+                console.error("Error Response Data:", err.response.data);
+                console.error("Error Response Status:", err.response.status);
             }
             const errorMessage = err.response?.data?.message || err.message || "Payment initialization failed.";
             alert(`Payment Error: ${errorMessage}`);
@@ -182,6 +203,16 @@ export default function MyBookings() {
                                                     className="bg-primary-900 text-white px-4 py-2 rounded-lg text-sm font-semibold shadow hover:bg-primary-800 transition-colors"
                                                 >
                                                     Pay Now
+                                                </motion.button>
+                                            )}
+                                            {(booking.status === 'pending' || booking.status === 'confirmed') && (
+                                                <motion.button
+                                                    whileHover={{ scale: 1.05 }}
+                                                    whileTap={{ scale: 0.95 }}
+                                                    onClick={() => handleCancel(booking.id)}
+                                                    className="bg-red-50 text-red-600 px-4 py-2 rounded-lg text-sm font-semibold border border-red-100 hover:bg-red-100 transition-colors"
+                                                >
+                                                    Cancel
                                                 </motion.button>
                                             )}
                                         </div>
