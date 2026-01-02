@@ -1,0 +1,28 @@
+@startuml
+title Role-Based Dashboard Access - Use Case Diagram
+
+actor Admin
+actor Staff
+actor Guest
+
+rectangle "Hotel Management System" {
+
+  Admin -- (Manage Users)
+  Admin -- (Manage Rooms)
+  Admin -- (Manage Bookings)
+  Admin -- (Process Payments)
+  Admin -- (View Analytics)
+  Admin -- (Manage Profile)
+
+  Staff -- (Manage Rooms)
+  Staff -- (Manage Bookings)
+  Staff -- (View Payments)
+  Staff -- (View Analytics)
+  Staff -- (Manage Profile)
+
+  Guest -- (Create Booking)
+  Guest -- (View Own Booking)
+  Guest -- (Manage Profile)
+}
+
+@enduml
